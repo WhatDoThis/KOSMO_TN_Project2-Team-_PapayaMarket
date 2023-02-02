@@ -1,8 +1,10 @@
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileReader
+import java.nio.charset.Charset
 import java.sql.Connection
 import java.sql.DriverManager
+
 
 class Tower {
 	var url = "jdbc:oracle:thin:@"
@@ -32,6 +34,13 @@ class Tower {
 	}
 }
 fun main() {
+	System.setProperty("file.encoding", "UTF-8")
+	try {
+		val charset = Charset::class.java.getDeclaredField("defaultCharset")
+		charset.isAccessible = true
+		charset.set(null, null)
+	} catch (e: Exception) {
+	}
 	var tower = Tower()
 	tower.start()
 	Login(tower)

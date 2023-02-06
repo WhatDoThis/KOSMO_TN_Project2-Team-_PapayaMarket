@@ -81,7 +81,7 @@ class PostIn : JFrame, ActionListener {
 		piPSeCPstmt = con!!.prepareStatement(selectCaSql);
 		var catList = piPSeCPstmt!!.executeQuery()
 		while(catList.next()){
-			println(catList.getString(1))
+			println(catList.getString(1))	//검증
 			piPCatList.add(catList.getString(1))
 		}
 	}
@@ -321,7 +321,7 @@ class PostIn : JFrame, ActionListener {
 								var count = 0
 								iStream = FileInputStream(file.canonicalPath)
 								val path = tower!!.path+"forUser\\$fileName"
-								println(path)
+								println(path)	//검증
 								os = FileOutputStream(path) //실제파일
 
 								while (iStream.read(bs).also { count = it } != -1) {
@@ -342,10 +342,9 @@ class PostIn : JFrame, ActionListener {
 
 							var i = piPInPstmt!!.executeUpdate()
 
-							println(i)
+							println(i)	//검증
 
 							piPInPstmt!!.close()
-							con!!.close()
 							piCloseAll()
 							dispose()
 							Main(tower!!, userId,"All")

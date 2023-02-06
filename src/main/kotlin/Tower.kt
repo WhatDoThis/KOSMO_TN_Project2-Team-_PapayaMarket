@@ -19,7 +19,7 @@ class Tower {
 		while(true){
 			var line = reader.readLine() ?:break
 			line = line.substring(line.indexOf("=")+1, line.length).trim()
-			println(line)
+			println(line)	//검증
 			paths.add(line)
 		}
 		url = url + paths[0] + ":JAVA"

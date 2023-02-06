@@ -302,7 +302,7 @@ class Join : JFrame, ActionListener {
         if(obj === joinTelcheckB){
             try {
                 var newTelI = Integer.parseInt(newTel)
-                println(newTelI)
+                println(newTelI)    //검증
                 if (newTel.isEmpty()) {
                     JOptionPane.showMessageDialog(
                         null, "아무것도 입력하지 않았어요", "경고",
@@ -346,7 +346,7 @@ class Join : JFrame, ActionListener {
 
             try {
                 var newTelI = Integer.parseInt(newTel)
-                println(newTelI)
+                println(newTelI)    //검증
 
                 if (JoinKdbc(tower!!).selectId(newId)) {
                     JOptionPane.showMessageDialog(
@@ -435,13 +435,13 @@ class Join : JFrame, ActionListener {
                 JOptionPane.showMessageDialog(null, "'__동(읍/면)'을 입력해주세요", "경고", JOptionPane.ERROR_MESSAGE)
             } else if(!joinGetSi.isEmpty() && !joinGetDong.isEmpty() && !joinGetDong.equals("\n") && !joinGetSi.equals("\n")){
                 var checkJoinGetSi = joinGetSi.substring(2)
-                println(checkJoinGetSi)
+                println(checkJoinGetSi) //검증
                 if (checkJoinGetSi.contains("시")) {
-                    println(joinGetSi)
+                    println(joinGetSi)  //검증
                     if (DongCheck(joinGetDong)) {
-                        println(joinGetDong)
+                        println(joinGetDong)    //검증
                         joinResult = "${joinGetSi} ${joinGetDong}"
-                        println(joinResult)
+                        println(joinResult) //검증
                         joinAddrTf.text = joinResult
                         joinInit2F.dispose()
                     }else{

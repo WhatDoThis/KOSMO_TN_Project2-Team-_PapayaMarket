@@ -76,7 +76,7 @@ class Chat :JFrame, ActionListener, Runnable, KeyListener{
         this.userId = userId
         this.postNO = postNO
         this.chatNO = chatNO
-        println(this.chatNO)
+        println(this.chatNO)    //검증
         chatConnect()
         chatInit()
         chatSetUI()
@@ -258,12 +258,12 @@ class Chat :JFrame, ActionListener, Runnable, KeyListener{
         try {
             println("Thread에 들어왔습니다")
 
-            println(chatNO)
-            println(chatNO.equals(""))
+            println(chatNO) //검증
+            println(chatNO.equals(""))  //검증
             while(true){
                 Thread.sleep(5000)
                 if(!chatNO.equals("")){
-                    println(chatNO)
+                    println(chatNO) //검증
                     break
                 }
             }
@@ -332,7 +332,7 @@ class Chat :JFrame, ActionListener, Runnable, KeyListener{
             if(chatNO.equals("")) {
                 val pstmtchCExistsql = con!!.prepareStatement(chCExistsql)
                 //"select CHATNO from CHAT where POSTNO=? and CHATBUYERID=?"
-                println(buyerId + ", " + postNO)
+                println(buyerId + ", " + postNO)    //검증
                 pstmtchCExistsql.setString(1, postNO)
                 pstmtchCExistsql.setString(2, buyerId)
                 rs = pstmtchCExistsql!!.executeQuery()

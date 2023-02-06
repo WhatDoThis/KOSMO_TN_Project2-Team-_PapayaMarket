@@ -145,7 +145,7 @@ class Login : JFrame ,ActionListener, KeyListener{
             Join(tower!!)
         }
         val myPass: String = java.lang.String.valueOf(lgPWTf.text)
-        println(myPass)
+        println(myPass) //검증
         var obj = e.source
         if (obj === lgLoginB) {
             if (lgIDTf.text.trim().isEmpty()) {
@@ -167,9 +167,8 @@ class Login : JFrame ,ActionListener, KeyListener{
         lgCheckLoginPstmt!!.setString(1, userId)
         var rs = lgCheckLoginPstmt!!.executeQuery()
         if(rs.next()){
-            println(rs.getString(1))
-            println(rs.getString(2))
-            println()
+            println(rs.getString(1))    //검증
+            println(rs.getString(2))    //검증
             if(lgPWTf.text.equals(rs.getString(2))){
 
                 JOptionPane.showMessageDialog(null, "환영합니다", "TN Project Papaya Market", JOptionPane.PLAIN_MESSAGE)
@@ -193,9 +192,8 @@ class Login : JFrame ,ActionListener, KeyListener{
         var keyCode:Int = e.keyCode
         when(keyCode){
             10 -> if(rs.next()){
-                println(rs.getString(1))
-                println(rs.getString(2))
-                println()
+                println(rs.getString(1))    //검증
+                println(rs.getString(2))    //검증
                 if(lgPWTf.text.equals(rs.getString(2))){
                     JOptionPane.showMessageDialog(null, "환영합니다", "TN Project Papaya Market", JOptionPane.PLAIN_MESSAGE)
                     println("메인화면으로 이동")

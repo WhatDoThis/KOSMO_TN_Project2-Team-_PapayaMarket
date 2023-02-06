@@ -143,7 +143,6 @@ class Editinfo : JFrame, ActionListener {
 
         editinfoTelTf = JTextField()
         userTel = userTel.replace("-", "")
-        println(userTel)
         editinfoTelTf.text = userTel
         editinfoTelTf.setBounds(160, 520, 200, 30)
         editinfoTelTf.font = Font("나눔스퀘어 네오 Bold", Font.BOLD, 15)
@@ -294,7 +293,7 @@ class Editinfo : JFrame, ActionListener {
             } else if (obj.text.equals("중복")) {
                 try {
                     var newEditTelI = Integer.parseInt(editinfoTel)
-                    println(newEditTelI)
+                    println(newEditTelI)    //검증
                     if (editinfoTel.isEmpty()) {
                         JOptionPane.showMessageDialog(
                             null, "아무것도 입력하지 않았어요", "경고",
@@ -322,7 +321,7 @@ class Editinfo : JFrame, ActionListener {
                                     JOptionPane.ERROR_MESSAGE
                                 )
                             } else {
-                                println(editinfoTel)
+                                println(editinfoTel)    //검증
                                 JOptionPane.showMessageDialog(null, "전화번호 사용가능")
                             }
                         }
@@ -341,7 +340,7 @@ class Editinfo : JFrame, ActionListener {
         if (obj === editinfoConfirmB) {
             try {
                 var newEditTelI = Integer.parseInt(editinfoTel)
-                println(newEditTelI)
+                println(newEditTelI)    //검증
                 if (EditinfoKdbc(tower!!).selectNick(newNick, currentId)) {
                     JOptionPane.showMessageDialog(
                         null, "이미 사용중인 닉네임입니다", "앗! 이럴수가!",
@@ -406,7 +405,7 @@ class Editinfo : JFrame, ActionListener {
                             )
                         }else {
                             EditinfoKdbc(tower!!).updateEditInfo(newNick, editinfoPwdCheck, joinResult, editinfoTelNo, userId)
-                            println(editinfoTel)
+                            println(editinfoTel)    //검증
                             JOptionPane.showMessageDialog(null, "회원정보 수정완료")
                             EditinfoKdbc(tower!!).closeAll()
                             dispose()
@@ -435,13 +434,13 @@ class Editinfo : JFrame, ActionListener {
                 JOptionPane.showMessageDialog(null, "'__동(읍/면)'을 입력해주세요", "경고", JOptionPane.ERROR_MESSAGE)
             } else if (!joinGetSi.isEmpty() && !joinGetDong.isEmpty() && !joinGetDong.equals("\n") && !joinGetSi.equals("\n")){
                 var checkJoinGetSi = joinGetSi.substring(2)
-                println(checkJoinGetSi)
+                println(checkJoinGetSi) //검증
                 if (checkJoinGetSi.contains("시")) {
-                    println(joinGetSi)
+                    println(joinGetSi)  //검증
                     if (DongCheck(joinGetDong)) {
-                        println(joinGetDong)
+                        println(joinGetDong)    //검증
                         joinResult = "${joinGetSi} ${joinGetDong}"
-                        println(joinResult)
+                        println(joinResult) //검증
                         editinfoAddrTf.text = joinResult
                         joinInit2F.dispose()
                     } else {

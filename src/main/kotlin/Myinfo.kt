@@ -1,5 +1,4 @@
 import java.awt.Color
-import com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table
 import java.awt.Container
 import java.awt.Font
 import java.awt.Image
@@ -312,7 +311,7 @@ class Myinfo:JFrame, ActionListener {
                     if(i == numberOfColumns){
                         data = data.substring(0, data.indexOf(" "))
                     }
-                    println(myinfoRs!!.getString(i))
+                    println(myinfoRs!!.getString(i))    //검증
                     temp.add(data)
                 }
                 rowData.add(temp)
@@ -352,7 +351,6 @@ class Myinfo:JFrame, ActionListener {
                 userP = myinfoRs!!.getString(2)
                 userTel = myinfoRs!!.getString(3)
                 userAddr = myinfoRs!!.getString(4)
-                //println("userNick: $userNick , userP: $userP")
             }
         } catch (se: SQLException) {
             println("(myinfoGet1st)정보조회 실패: $se")
@@ -414,8 +412,8 @@ class Myinfo:JFrame, ActionListener {
         while(myinfoRS.next()){
             var sellerP = myinfoRS.getInt(1)
             var BuyerP = myinfoRS.getInt(2)
-            println(sellerP)
-            println(BuyerP)
+            println(sellerP)    //검증
+            println(BuyerP) //검증
             if((BuyerP != 0) && (sellerP != 0)){
                 myInfoBoolean = false
             }

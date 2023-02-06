@@ -5,7 +5,6 @@ import java.awt.event.ActionListener
 import java.io.*
 import java.lang.Math.abs
 import java.sql.Connection
-import java.sql.DriverManager
 import java.sql.PreparedStatement
 import java.sql.ResultSet
 import java.text.SimpleDateFormat
@@ -133,7 +132,6 @@ class PostInfo : JFrame, ActionListener {
 
     // SQL연결
     fun poinMyPostKdbc(){
-        con.autoCommit = false
         println("드라이버 로딩 성공")   // 검증!!!
         poinpstmt0 = con.prepareStatement(poinWhoPostSql)
         poinpstmt1 = con.prepareStatement(poinUserInfoSql)
@@ -168,7 +166,6 @@ class PostInfo : JFrame, ActionListener {
         }
         if(!checkPostImageName.toString().equals("null")){
             checkPostImagePath = tower!!.path+"forUser\\${checkPostImageName.toString()}"
-            println(checkPostImagePath)
         }else{
             checkPostImageName=""
         }
@@ -213,7 +210,7 @@ class PostInfo : JFrame, ActionListener {
         poinRsP = poinpstmt6.executeQuery()
         while (poinRsP.next()) {
             poinCheckFavoritePostNo = poinRsP.getInt(2)
-            println(poinCheckFavoritePostNo)
+            println(poinCheckFavoritePostNo)    // 검증
             if(poinCheckFavoritePostNo == postNo){
                 return 1
             }
@@ -232,7 +229,6 @@ class PostInfo : JFrame, ActionListener {
         if (poinReturnVal == JFileChooser.APPROVE_OPTION) { // 열기를 클릭
             poinImageFolderPath = poinImageChooser.selectedFile.toString()
         } else if (poinReturnVal == JFileChooser.CANCEL_OPTION) { // 취소를 클릭
-            println("cancel")
             poinImageFolderPath = checkPostImagePath
         }
         return poinImageFolderPath
@@ -725,7 +721,6 @@ class PostInfo : JFrame, ActionListener {
         poinpstmt3.setString(6,statItem)
         poinpstmt3.setInt(7,postNo)
         poinpstmt3.executeUpdate()
-        con.commit()
     }
 
     // 내글일 때 글 삭제 기능
@@ -733,32 +728,26 @@ class PostInfo : JFrame, ActionListener {
         poinpstmt4.setString(1,"Y")
         poinpstmt4.setInt(2,postNo)
         poinpstmt4.executeUpdate()
-        con.commit()
     }
 
     // 내글일 때 다시심기 기능
     fun poinMyPostReplant() {
         poinpstmt5.setInt(1, postNo)
         poinpstmt5.executeUpdate()
-        con.commit()
     }
 
     // 남의 글일 때 관심목록 추가 기능
     fun poinFavoriteInsert(){
-        println("1111111111")
         poinpstmt7.setInt(1, postNo)
         poinpstmt7.setString(2, userId)
         poinpstmt7.executeUpdate()
-        con.commit()
     }
 
     // 남의 글일 때 관심목록 제거 기능
     fun poinFavoriteDelete(){
-        println("2222222222")
         poinpstmt8.setInt(1, postNo)
         poinpstmt8.setString(2, userId)
         poinpstmt8.executeUpdate()
-        con.commit()
     }
 
     // 내글일 때 다시심기 3일체크 기능
@@ -885,19 +874,17 @@ class PostInfo : JFrame, ActionListener {
                 os.flush()
             }
         }
-        println(poinImageFileName)
+        println(poinImageFileName)  //검증
         return poinImageFileName
     }
 
 
     // 판매완료 시 DEAL Insert 기능
     fun poinInsertDeal(poinBuyerValue:String){
-        println("3333333333")
         poinpstmt9.setString(1, userId)
         poinpstmt9.setString(2, poinBuyerValue)
         poinpstmt9.setInt(3, postNo)
         poinpstmt9.executeUpdate()
-        con.commit()
     }
 
 
@@ -907,7 +894,6 @@ class PostInfo : JFrame, ActionListener {
         var poinRsP = poinpstmt10.executeQuery()
         poinBuyerC.addItem("취소를 선택합니다")
         while(poinRsP.next()) {
-            println(poinRsP.getString(1))
             poinBuyerC.addItem(poinRsP.getObject(1).toString())
         }
     }
@@ -972,7 +958,6 @@ class PostInfo : JFrame, ActionListener {
                                 }else if(poinBuyerNick.equals("취소를 선택합니다")) {
                                     JOptionPane.showMessageDialog(null, "판매완료 취소")
                                 }else if(!poinBuyerNick.equals(null) || !poinBuyerNick.equals("")){
-                                    println(poinBuyerNick)
                                     textFieldCheckInActionPerformed(poinStatItem)
                                     poinInsertDeal(poinBuyerNick) //나는 판매자
                                     dispose()
@@ -1022,7 +1007,6 @@ class PostInfo : JFrame, ActionListener {
                 // 글 채팅보내기 누르면 Y/N 선택옵션
                 val poinChatBAnwser = JOptionPane.showConfirmDialog(null, "[${checkUserNick}]님에게 채팅을 보내시겠습니까?", "확인", JOptionPane.YES_NO_OPTION)
                 if (poinChatBAnwser == JOptionPane.YES_OPTION) {    //Y일때 채팅창 클래스 불러오기
-                    println("poinChatB실행")
                     Chat(tower!!, userId,""+postNo)  //Test 중~!!!!!!!!!!!!!!!!!!!!!
                 }   //N일때 아무일도 안생김
             }

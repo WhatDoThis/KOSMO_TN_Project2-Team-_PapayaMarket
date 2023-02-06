@@ -272,7 +272,7 @@ class Main: JFrame, ActionListener{
     inner class mouseAdaptor : MouseAdapter() {
         override fun mouseClicked(e: MouseEvent) {
             if (e.getClickCount() === 2) {
-                println(selectedValue)
+                println(selectedValue)  //검증
                 PostInfo(tower!!, userId, Integer.parseInt(selectedValue))
                 println("상세화면 클릭")
                 maCloseAll()

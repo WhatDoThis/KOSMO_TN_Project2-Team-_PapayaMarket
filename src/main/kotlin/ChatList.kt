@@ -4,7 +4,6 @@ import java.awt.event.ActionListener
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
 import java.sql.Connection
-import java.sql.DriverManager
 import java.sql.PreparedStatement
 import java.util.*
 import javax.swing.*
@@ -73,7 +72,6 @@ class ChatList : JFrame, ActionListener {
 
     // SQL연결
     fun chatListKdbc() {
-        con.autoCommit = false
         chatLpstmt0 = con.prepareStatement(chatLSql)
         chatLpstmt1 = con.prepareStatement(chatLGetNickSql)
         chatLpstmt2 = con.prepareStatement(chatLChatConSql)
@@ -324,14 +322,12 @@ class ChatList : JFrame, ActionListener {
     fun chatLSetOfOutListAtSeller(getChatNoForDelete:Int) {
         chatLpstmt6.setInt(1,getChatNoForDelete)
         chatLpstmt6.executeUpdate()
-        con.commit()
     }
 
     // 유저가 BUYER일때 BUYEROUT 업데이트 -- for Delete 2.2
     fun chatLSetOfOutListAtBuyer(getChatNoForDelete:Int) {
         chatLpstmt7.setInt(1,getChatNoForDelete)
         chatLpstmt7.executeUpdate()
-        con.commit()
     }
 
     fun chatLcloseAll(){
